@@ -1,3 +1,5 @@
+const apiRouter = require('./routes/api'); // 상단에 추가
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -23,6 +25,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/api', apiRouter); // 아래쪽에 추가 (app.use 순서에 주의!)
 
 app.use('/', indexRouter);
 // app.use('/users', usersRouter);
